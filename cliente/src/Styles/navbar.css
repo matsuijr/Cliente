@@ -1,0 +1,39 @@
+.navbar {
+  background-color: #111827;
+  color: white;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin: 0;
+}
+
+.nav-links a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #60a5fa;
+}
+
+.btn-registro {
+  background-color: #2563eb;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.btn-logout {
+  margin-left: 20px;
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
