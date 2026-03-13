@@ -1,10 +1,6 @@
-// URL base de tu backend
-// Aquí centralizamos las llamadas HTTP para no repetir código
 const API_URL = "http://localhost:3001/api/auth";
 
-// ===============================
-// REGISTRO
-// ===============================
+//Funcion para registrar un usuario
 export async function registrarUsuario(datos) {
   const respuesta = await fetch(`${API_URL}/registro`, {
     method: "POST",
@@ -16,10 +12,7 @@ export async function registrarUsuario(datos) {
 
   return respuesta.json();
 }
-
-// ===============================
-// LOGIN
-// ===============================
+//Funcion para loguearse en el sistema
 export async function loginUsuario(datos) {
   const respuesta = await fetch(`${API_URL}/login`, {
     method: "POST",
