@@ -28,6 +28,7 @@ function Navbar() {
             </Link>
           </>
         )}
+        {token && <Link to="/crear">Publicar vehículo</Link>}
 
         {/* Usuario autenticado */}
         {token && (

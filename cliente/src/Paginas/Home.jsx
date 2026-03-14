@@ -1,36 +1,61 @@
 import { useEffect, useState } from "react";
 import { obtenerVehiculos } from "../Js/vehiculo";
 import { Link } from "react-router-dom";
+import "../Styles/Home.css";
 
 function Home() {
   const [vehiculos, setVehiculos] = useState([]);
-  //LLamamos a nuestra funcion que carga todos los vehiculos en el sistema
+  const [pagina, setPagina] = useState(1);
+
   useEffect(() => {
-    const cargarVehiculos = async () => {
-      const data = await obtenerVehiculos();
+    const cargar = async () => {
+      const data = await obtenerVehiculos(pagina);
       setVehiculos(data);
     };
 
-    cargarVehiculos();
-  }, []);
+    cargar();
+  }, [pagina]);
 
   return (
     <div>
-      <h2>Vehículos disponibles</h2>
+      <div className="grid-vehiculos">
+        {vehiculos.map((v) => {
+          const imagen =
+            v.imagenes?.length > 0
+              ? v.imagenes[0]
+              : "https://via.placeholder.com/400x200";
 
-      {vehiculos.map((v) => (
-        <div
-          key={v._id}
-          style={{ border: "1px solid gray", margin: "10px", padding: "10px" }}
-        >
-          <h3>
-            {v.marca} {v.modelo}
-          </h3>
-          <p>Año: {v.anio}</p>
-          <p>Precio: ₡{v.precio}</p>
-          <Link to={`/vehiculo/${v._id}`}>Ver detalle</Link>
-        </div>
-      ))}
+          return (
+            <div className="card-vehiculo" key={v._id}>
+              <img src={imagen} className="img-vehiculo" />
+
+              <div className="info-vehiculo">
+                <h3>
+                  {v.marca} {v.modelo}
+                </h3>
+                <p>Año: {v.anio}</p>
+                <p className="precio">₡{v.precio}</p>
+
+                <Link to={`/vehiculo/${v._id}`} className="btn-detalle">
+                  Ver detalle
+                </Link>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* PAGINACION */}
+
+      <div style={{ textAlign: "center", margin: "20px" }}>
+        <button onClick={() => setPagina(pagina - 1)} disabled={pagina === 1}>
+          ← Anterior
+        </button>
+
+        <span style={{ margin: "0 10px" }}>Página {pagina}</span>
+
+        <button onClick={() => setPagina(pagina + 1)}>Siguiente →</button>
+      </div>
     </div>
   );
 }

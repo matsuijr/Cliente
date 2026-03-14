@@ -4,6 +4,7 @@ import Home from "./Paginas/Home";
 import Login from "./Paginas/Login";
 import Registro from "./Paginas/Registro";
 import DetalleVehiculo from "./Paginas/DetalleVehiculo";
+import CrearVehiculo from "./Paginas/CrearVehiculo";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/vehiculo/:id" element={<DetalleVehiculo />} />
+        <Route path="/crear" element={<CrearVehiculo />} />
       </Routes>
     </>
   );

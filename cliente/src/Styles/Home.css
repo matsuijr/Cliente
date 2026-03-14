@@ -1,0 +1,46 @@
+.grid-vehiculos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card-vehiculo {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.card-vehiculo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.img-vehiculo {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.info-vehiculo {
+  padding: 15px;
+}
+
+.precio {
+  color: #0a7cff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.btn-detalle {
+  display: block;
+  margin-top: 10px;
+  background: #0a7cff;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  border-radius: 6px;
+  text-decoration: none;
+}
