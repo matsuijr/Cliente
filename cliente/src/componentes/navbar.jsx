@@ -5,7 +5,7 @@ function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  // Cierra sesión eliminando el token
+  // Cierra sesion eliminando el token
   const cerrarSesion = () => {
     localStorage.removeItem("token");
     navigate("/");
@@ -17,25 +17,20 @@ function Navbar() {
 
       <div className="nav-links">
         {/* Visible para todos */}
-        <Link to="/">Vehículos</Link>
-
-        {/* Usuario NO autenticado */}
-        {!token && (
-          <>
-            <Link to="/login">Login</Link>
-            <Link to="/registro" className="btn-registro">
-              Registrarse
-            </Link>
-          </>
-        )}
-        {token && <Link to="/crear">Publicar vehículo</Link>}
+        <Link to="/">Inicio</Link>
 
         {/* Usuario autenticado */}
         {token && (
-          <button className="btn-logout" onClick={cerrarSesion}>
-            Cerrar sesión
-          </button>
+          <>
+            <Link to="misvehiculos">Vehículos</Link>
+            <Link to="/chats">Chats</Link>
+            <button className="btn-logout" onClick={cerrarSesion}>
+              Cerrar sesión
+            </button>
+          </>
         )}
+        {/* Usuario NO autenticado */}
+        {!token && <Link to="/login">Iniciar sesión</Link>}
       </div>
     </nav>
   );

@@ -5,6 +5,7 @@ import Login from "./Paginas/Login";
 import Registro from "./Paginas/Registro";
 import DetalleVehiculo from "./Paginas/DetalleVehiculo";
 import CrearVehiculo from "./Paginas/CrearVehiculo";
+import Vehiculos from "./Paginas/Vehiculos";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/registro" element={<Registro />} />
         <Route path="/vehiculo/:id" element={<DetalleVehiculo />} />
         <Route path="/crear" element={<CrearVehiculo />} />
+        <Route path="/misVehiculos" element={<Vehiculos />} />
       </Routes>
     </>
   );
