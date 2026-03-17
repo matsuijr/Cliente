@@ -1,39 +1,78 @@
+/* Fondo general */
+body {
+  margin: 0;
+  background: #f0f6ff; /* celeste claro */
+  font-family: "Poppins", decorative;
+}
+
+/* Navbar */
 .navbar {
-  background-color: #111827;
-  color: white;
-  padding: 15px 40px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  background: #1877f2; /* azul sólido */
+  height: 80px;
+  padding: 0 24px;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* sombra sutil */
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(41, 121, 225, 0.619); /* azul suave con transparencia */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px); /* opcional: efecto de difuminado detrás */
 }
 
 .logo {
-  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-grow: 1;
 }
 
 .nav-links a {
-  color: white;
-  margin-left: 20px;
+  color: #fff;
   text-decoration: none;
+  font-size: 20px;
   font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-  color: #60a5fa;
+  color: #ffdd57;
 }
 
-.btn-registro {
-  background-color: #2563eb;
-  padding: 6px 12px;
-  border-radius: 6px;
+.nav-actions {
+  display: flex;
+  align-items: center;
 }
 
+.btn-login,
 .btn-logout {
-  margin-left: 20px;
-  background-color: #dc2626;
-  color: white;
+  background: #145dbf; /* azul más oscuro */
+  color: #fff;
   border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 8px 18px;
+  border-radius: 20px; /* pill redondeado */
+  font-weight: 500;
   cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 19px;
+}
+
+.btn-login:hover,
+.btn-logout:hover {
+  background: #0f4aa3;
 }

@@ -10,7 +10,7 @@ function Login() {
     password: "",
   });
 
-  // Maneja cambios del formulario
+  // maneja cambios en los inputs y actualiza el estado del formulario
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -32,9 +32,10 @@ function Login() {
       });
 
       const data = await resp.json();
-
+      // Si el login es exitoso, guarda el token y el usuario en localStorage y redirige a la página principal
       if (resp.ok) {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("usuario", JSON.stringify(data.usuario)); // guarda el usuario completo
         navigate("/");
       } else {
         alert(data.mensaje || "Error al iniciar sesión");
@@ -67,6 +68,11 @@ function Login() {
         />
 
         <button type="submit">Entrar</button>
+
+        <p className="register-link">
+          ¿No tienes cuenta?{" "}
+          <span onClick={() => navigate("/registro")}>Regístrate</span>
+        </p>
       </form>
     </div>
   );

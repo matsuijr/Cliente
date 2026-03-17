@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { registrarUsuario } from "../Js/api";
+import { useNavigate } from "react-router-dom";
+import "../Styles/registro.css";
 
 function Registro() {
+  const navigate = useNavigate();
   // Estados del formulario
   const [form, setForm] = useState({
     nombre: "",
@@ -13,7 +16,7 @@ function Registro() {
 
   const [mensaje, setMensaje] = useState("");
 
-  // Maneja cambios en inputs
+  // manejo de cambios en el formulario
   const manejarCambio = (e) => {
     setForm({
       ...form,
@@ -26,6 +29,7 @@ function Registro() {
     e.preventDefault();
 
     try {
+      // Llamada a la API para registrar el usuario
       const data = await registrarUsuario(form);
       setMensaje(data.mensaje || "Usuario registrado");
     } catch (error) {
@@ -34,40 +38,30 @@ function Registro() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Registro</h2>
+    <div className="register-container">
+      <form className="register-form" onSubmit={manejarRegistro}>
+        <h2>Registro</h2>
 
-      <form onSubmit={manejarRegistro}>
         <input name="nombre" placeholder="Nombre" onChange={manejarCambio} />
-        <br />
-        <br />
-
         <input
           name="apellidos"
           placeholder="Apellidos"
           onChange={manejarCambio}
         />
-        <br />
-        <br />
-
         <input name="email" placeholder="Correo" onChange={manejarCambio} />
-        <br />
-        <br />
-
         <input
           name="password"
           type="password"
           placeholder="Contraseña"
           onChange={manejarCambio}
         />
-        <br />
-        <br />
-
         <input name="edad" placeholder="Edad" onChange={manejarCambio} />
-        <br />
-        <br />
 
         <button type="submit">Registrar</button>
+        <p className="login-link">
+          ¿Ya tienes cuenta?{" "}
+          <span onClick={() => navigate("/login")}>Inicia sesión</span>
+        </p>
       </form>
 
       <p>{mensaje}</p>

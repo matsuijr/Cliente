@@ -4,8 +4,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import "../Styles/Home.css";
 
 function Home() {
+  // estados para filtros y resultados de búsqueda de vehículos
   const [vehiculos, setVehiculos] = useState([]);
-
   const [marca, setMarca] = useState("");
   const [precioMin, setPrecioMin] = useState("");
   const [precioMax, setPrecioMax] = useState("");
@@ -16,7 +16,7 @@ function Home() {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const paginaActual = Number(searchParams.get("page")) || 1;
-
+  // cada vez que cambie la página o los filtros, recargamos los vehículos
   useEffect(() => {
     const cargar = async () => {
       const data = await obtenerVehiculos(paginaActual, {
@@ -41,7 +41,7 @@ function Home() {
     anioMax,
     estado,
   ]);
-
+  // al hacer click en buscar, volvemos a la página 1 para mostrar los resultados desde el inicio
   const buscar = () => {
     setSearchParams({ page: 1 });
   };
@@ -49,50 +49,47 @@ function Home() {
   return (
     <div>
       {/* FILTROS */}
-      <div
-        style={{
-          padding: "20px",
-          display: "flex",
-          gap: "10px",
-          justifyContent: "center",
-        }}
-      >
-        <input
-          placeholder="Marca"
-          value={marca}
-          onChange={(e) => setMarca(e.target.value)}
-        />
-        <input
-          placeholder="Modelo"
-          value={modelo}
-          onChange={(e) => setModelo(e.target.value)}
-        />
-        <input
-          placeholder="Año Min"
-          value={anioMin}
-          onChange={(e) => setAnioMin(e.target.value)}
-        />
-        <input
-          placeholder="Año Max"
-          value={anioMax}
-          onChange={(e) => setAnioMax(e.target.value)}
-        />
-        <select value={estado} onChange={(e) => setEstado(e.target.value)}>
-          <option value="">Todos</option>
-          <option value="disponible">Disponible</option>
-          <option value="vendido">Vendido</option>
-        </select>
-        <input
-          placeholder="Precio Min"
-          value={precioMin}
-          onChange={(e) => setPrecioMin(e.target.value)}
-        />
-        <input
-          placeholder="Precio Max"
-          value={precioMax}
-          onChange={(e) => setPrecioMax(e.target.value)}
-        />
-        <button onClick={buscar}>Buscar</button>
+      <div className="filtros">
+        <div className="filtros-form">
+          <input
+            placeholder="Marca"
+            value={marca}
+            onChange={(e) => setMarca(e.target.value)}
+          />
+          <input
+            placeholder="Modelo"
+            value={modelo}
+            onChange={(e) => setModelo(e.target.value)}
+          />
+          <input
+            placeholder="Año Min"
+            value={anioMin}
+            onChange={(e) => setAnioMin(e.target.value)}
+          />
+          <input
+            placeholder="Año Max"
+            value={anioMax}
+            onChange={(e) => setAnioMax(e.target.value)}
+          />
+          <select value={estado} onChange={(e) => setEstado(e.target.value)}>
+            <option value="">Todos</option>
+            <option value="disponible">Disponible</option>
+            <option value="vendido">Vendido</option>
+          </select>
+          <input
+            placeholder="Precio Min"
+            value={precioMin}
+            onChange={(e) => setPrecioMin(e.target.value)}
+          />
+          <input
+            placeholder="Precio Max"
+            value={precioMax}
+            onChange={(e) => setPrecioMax(e.target.value)}
+          />
+        </div>
+        <button className="btn-buscar" onClick={buscar}>
+          Buscar
+        </button>
       </div>
 
       {/* GRID */}
@@ -125,7 +122,7 @@ function Home() {
       </div>
 
       {/* PAGINACION */}
-      <div style={{ textAlign: "center", margin: "20px" }}>
+      <div className="paginacion">
         <button
           onClick={() => setSearchParams({ page: paginaActual - 1 })}
           disabled={paginaActual === 1}
