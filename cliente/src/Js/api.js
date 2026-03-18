@@ -24,3 +24,21 @@ export async function loginUsuario(datos) {
 
   return respuesta.json();
 }
+
+//Funcion para verificar el token
+export async function verificarToken() {
+  const token = localStorage.getItem("token");
+  if (!token) return false;
+
+  try {
+    const respuesta = await fetch(`${API_URL}/protegida`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return respuesta.ok;
+  } catch (error) {
+    return false;
+  }
+}

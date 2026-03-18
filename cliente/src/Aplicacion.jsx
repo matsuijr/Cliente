@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./componentes/navbar";
+import ProtectedRoute from "./componentes/ProtectedRoute";
 import Home from "./Paginas/Home";
 import Login from "./Paginas/Login";
 import Registro from "./Paginas/Registro";
@@ -12,15 +13,42 @@ function App() {
   return (
     <>
       <Navbar />
-      {/* Rutas de la aplicación */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Registro />} />
-        <Route path="/vehiculo/:id" element={<DetalleVehiculo />} />
-        <Route path="/crear" element={<CrearVehiculo />} />
-        <Route path="/misVehiculos" element={<Vehiculos />} />
-        <Route path="/chats" element={<Chats />} />
+        <Route
+          path="/vehiculo/:id"
+          element={
+            <ProtectedRoute>
+              <DetalleVehiculo />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/crear"
+          element={
+            <ProtectedRoute>
+              <CrearVehiculo />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/misVehiculos"
+          element={
+            <ProtectedRoute>
+              <Vehiculos />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/chats"
+          element={
+            <ProtectedRoute>
+              <Chats />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
